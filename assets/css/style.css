@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --primary: magenta;
+    --secondary: purple;
+    --tertiary: eggplant;
+    font-size: 62.5%;
+  }
+  
+  main {
+    color: black;
+    margin: 0;
+    padding: 0 200px;
+    display: flex;
+    /* flex-direction: column; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: left;
+    font-size: 22px;
+    width: 90%;
+    justify-content: center;
+  }
+
+  h1, h2 {
+      font-size: 40px;
+  }
+
+  h3 {
+    color: rgb(175, 175, 175);
+    font-weight: lighter;
+    font-style: italic;
+    border-top: 2px solid rgb(175, 175, 175);
+  }
+
+  button {
+    color: white;
+    background-color: rgb(72, 36, 100);
+    text-align: center;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+  }
+
+  button:hover {
+    background-color: violet;
+}
+
+  header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 22px;
+  }
+
+  header a, header p {
+      display: inline-block;
+      margin: 20px 10px;
+
+  }
+
+  header a {
+      color: violet;
+      text-decoration: none;
+  }
+
+ .start {
+   text-align: center;
+ }
+
+  .choice {
+      text-align: left;
+      display: block;
+      width: 40%;
+      max-width: 300px;
+  }
+
+  /* .question {
+    
+  } */
+
+  /* @MEDIA QUERIES - PHONE */
+
+  @media screen and (max-width: 900px) {
+
+    main {
+      width: 100%;
+      padding: 25px;
+    }
+
+    .choice {
+      width: 100%;
+    }
+
+  }
+
+  /* @MEDIA QUERIES - PHONE */
+
+  @media screen and (max-width: 600px) {
+
+  }
