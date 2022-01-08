@@ -38,9 +38,10 @@
     background-color: rgb(72, 36, 100);
     text-align: center;
     border-radius: 5px;
-    margin: 5px;
+    margin: 0px;
     padding: 10px 15px;
-    border: none;
+    border: 5px solid white;
+    border-radius: 10px;
   }
 
   button:hover {
