@@ -18,7 +18,7 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: left;
     font-size: 22px;
-    width: 90%;
+    width: 100%;
     justify-content: center;
   }
 
@@ -73,6 +73,15 @@
       display: block;
       width: 40%;
       max-width: 300px;
+  }
+
+  .invisible {
+    display: none;
+  }
+
+  #question-container {
+    height: 800px;
+    min-width: 200px;
   }
 
   /* .question {
