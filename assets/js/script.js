@@ -4,8 +4,8 @@ var timeLeft = document.querySelector("span");
 var time = 30;
 var questionContainerEl = document.querySelector("#question-container");
 var choiceEl = document.querySelector(".choice");
-var correctAnswerEl = document.querySelector(".correct");
-var wrongAnswerEl = document.querySelector(".wrong");
+// var correctAnswerEl = document.querySelector(".correct");
+// var wrongAnswerEl = document.querySelector(".wrong");
 
 var questionNumber = 0;
 
@@ -90,9 +90,9 @@ var createQuestion = function(questionNumberArg) {
         questionChoiceEl.className = "choice choice1";
         questionChoiceEl.textContent = questions[questionNumberArg].choice1;
         if (questions[questionNumberArg].correct === 1) {
-            questionChoiceEl.setAttribute ("answer", "correct");
+            questionChoiceEl.setAttribute ("id", "#correct");
         } else {
-            questionChoiceEl.setAttribute ("answer", "wrong");
+            questionChoiceEl.setAttribute ("id", "#wrong");
         };
         choicesDivEl.appendChild(questionChoiceEl);
 
@@ -100,9 +100,9 @@ var createQuestion = function(questionNumberArg) {
         questionChoiceEl.className = "choice choice2";
         questionChoiceEl.textContent = questions[questionNumberArg].choice2;
         if (questions[questionNumberArg].correct === 2) {
-            questionChoiceEl.setAttribute ("answer", "correct");
+            questionChoiceEl.setAttribute ("id", "#correct");
         } else {
-            questionChoiceEl.setAttribute ("answer", "wrong");
+            questionChoiceEl.setAttribute ("id", "#wrong");
         };
         choicesDivEl.appendChild(questionChoiceEl);
 
@@ -110,9 +110,9 @@ var createQuestion = function(questionNumberArg) {
         questionChoiceEl.className = "choice choice3";
         questionChoiceEl.textContent = questions[questionNumberArg].choice3;
         if (questions[questionNumberArg].correct === 3) {
-            questionChoiceEl.setAttribute ("answer", "correct");
+            questionChoiceEl.setAttribute ("id", "#correct");
         } else {
-            questionChoiceEl.setAttribute ("answer", "wrong");
+            questionChoiceEl.setAttribute ("id", "#wrong");
         };
         choicesDivEl.appendChild(questionChoiceEl);
         
@@ -120,49 +120,40 @@ var createQuestion = function(questionNumberArg) {
         questionChoiceEl.className = "choice choice4";
         questionChoiceEl.textContent = questions[questionNumberArg].choice4;
         if (questions[questionNumberArg].correct === 4) {
-            questionChoiceEl.setAttribute ("answer", "correct");
+            questionChoiceEl.setAttribute ("id", "#correct");
         } else {
-            questionChoiceEl.setAttribute ("answer", "wrong");
+            questionChoiceEl.setAttribute ("id", "#wrong");
         };
         choicesDivEl.appendChild(questionChoiceEl);
   
-        choicesDivEl.addEventListener("click", function(){
-            questionNumber++;
-            console.log(questionNumber);
-            questionDivEl.remove();
-            if (questionNumber <= questions.length){
-                createQuestion(questionNumber);
-            } else {
-                console.log
-                score();
-            };
-            
-        });
+        var answerCorrectness = function(answer) {
 
-        
-    
-    
+        };
+
+        choicesDivEl.addEventListener("click", function(){
+     
+        questionNumber++;
+        console.log(questionNumber);
+        questionDivEl.remove();
+        if (questionNumber <= 3){
+            createQuestion(questionNumber);
+        } else {
+            console.log("WOO!")
+            score();
+        };             
+    });
 }
 
-
-
-    //  correctAnswerEl.addEventListener("click", function() {
-    //     console.log("Good!");
-
-        // createQuestion2();
-
-    // });
+var choicesButtonHandler = function (event) {
     
-
-    // wrongAnswerEl.addEventListener("click", function() {
-    //     console.log("Bad!");
-    //     time = time - 2;
-    //     timeLeft.textContent = time;
-    // });
-
-     
-// };
-
+    var targetEl = event.target;
+  
+    if (targetEl.matches("#correct")) {
+      console.log("CORRECT!");
+    } else if (targetEl.matches("#wrong")) {
+      console.log("wrong.");
+    }
+  };
 
 function checkAnswer() {
 
@@ -182,7 +173,4 @@ function checkAnswer() {
 
 startButtonEl.addEventListener("click", startQuiz);
 
-// correctAnswerEl.addEventListener("click", function() {
-//      console.log("Good!");
-//      });
-
+choiceEl.addEventListener("click", choicesButtonHandler);
