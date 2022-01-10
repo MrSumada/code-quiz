@@ -85,6 +85,13 @@ function startQuiz() {
 
 };
 
+// Remove ALL children function
+
+function removeAllChildren(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    };
+};
 
 // COUNTDOWN TIMER FUNCTION
 
@@ -94,19 +101,18 @@ var countdown = function() {
 
     var timeCountdown = setInterval(function() {
 
-        if (time < 2) {
-            timeLeft.textContent = "";
+        if (questionNumber === questions.length) {
             clearInterval(timeCountdown);
-            // remove();
+        }
+
+        if (time < 2) {
+            timeLeft.textContent = 0;
+            clearInterval(timeCountdown);
             score();
         } else {
         time--;
         timeLeft.textContent = time;
         };
-
-        if (questionNumber === questions.length) {
-            clearInterval(timeCountdown);
-        }
     },1000);
 
 };
@@ -193,8 +199,10 @@ var createQuestion = function(questionNumberArg) {
             if (time >= 3) {
                 time = time - 3;
             } else {
-                timeLeft = "";
-                score();
+                time = 0;
+                timeLeft.textContent = time;
+                questionDivEl.remove();
+                // score();
             };
             timeLeft.textContent = time;
         };
@@ -204,7 +212,9 @@ var createQuestion = function(questionNumberArg) {
             questionNumber++;
             questionDivEl.remove();
             if (questionNumber <= questions.length-1){
+                if (time > 0) {
                 createQuestion(questionNumber);
+                }
             } else {
                 clearInterval(nextQuestion);
                 console.log("Let's see the score!")
@@ -214,5 +224,43 @@ var createQuestion = function(questionNumberArg) {
         },1000);
     }, {once : true});
 }
+
+function score() {
+    var deleteContainer = document.querySelector("#question-container");
+    // deleteContainer.remove();
+    removeAllChildren(questionContainerEl);
+    time = "";
+
+    var scoreContainerEl = document.querySelector("#score-container");
+
+    var scoreDivEl = document.createElement("div");
+    scoreDivEl.className = "score";
+    scoreContainerEl.appendChild(scoreDivEl);
+
+    var scoreHeaderEl = document.createElement("h1");
+    var scoreText = "You did it! Your score is " + currentScore + "!";
+    scoreHeaderEl.textContent = scoreText;
+    scoreDivEl.appendChild(scoreHeaderEl);
+
+    var playAgain = document.createElement("button");
+    playAgain.className = "again";
+    playAgain.textContent = "Play Again?"
+    scoreDivEl.appendChild(playAgain);
+
+    playAgain.addEventListener("click", function() {
+        time = 30;
+        currentScore = 0;
+        questionNumber = 0;
+        startQuiz();
+        scoreDivEl.remove();
+
+        var main = document.querySelector("main");
+        var newQuestionContainerEl = document.createElement("div");
+        newQuestionContainerEl.setAttribute = ("id", "question-container");
+        main.appendChild(questionContainerEl);
+    });
+};
+
+
 
 startButtonEl.addEventListener("click", startQuiz);
