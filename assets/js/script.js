@@ -1,5 +1,6 @@
 var startButtonEl = document.querySelector("#startbtn");
 var startContainer = document.querySelector("#start-div");
+var highScoreEl = document.querySelector("#high-score");
 var timeLeft = document.querySelector("span");
 var time = 30;
 var questionContainerEl = document.querySelector("#question-container");
@@ -202,7 +203,6 @@ var createQuestion = function(questionNumberArg) {
                 time = 0;
                 timeLeft.textContent = time;
                 questionDivEl.remove();
-                // score();
             };
             timeLeft.textContent = time;
         };
@@ -217,8 +217,9 @@ var createQuestion = function(questionNumberArg) {
                 }
             } else {
                 clearInterval(nextQuestion);
-                console.log("Let's see the score!")
+                if (time > 0) {
                 score();
+                };
             };
             clearInterval(nextQuestion);
         },1000);
@@ -226,10 +227,14 @@ var createQuestion = function(questionNumberArg) {
 }
 
 function score() {
+
+    // NEED TO ADD A TEXT BOX TO ADD INITIALS
+    // LINKS TO HIGH SCORES
+    // HIGH SCORES CAN 'GO BACK' or 'CLEAR HIGH SCORE'
+
+
     var deleteContainer = document.querySelector("#question-container");
-    // deleteContainer.remove();
     removeAllChildren(questionContainerEl);
-    time = "";
 
     var scoreContainerEl = document.querySelector("#score-container");
 
@@ -238,8 +243,8 @@ function score() {
     scoreContainerEl.appendChild(scoreDivEl);
 
     var scoreHeaderEl = document.createElement("h1");
-    var scoreText = "You did it! Your score is " + currentScore + "!";
-    scoreHeaderEl.textContent = scoreText;
+ 
+    scoreHeaderEl.textContent = "You did it! Your score is " + currentScore + "!";
     scoreDivEl.appendChild(scoreHeaderEl);
 
     var playAgain = document.createElement("button");
@@ -261,6 +266,15 @@ function score() {
     });
 };
 
+function viewHighScore() {
+    var highScore = 100;
+    var initials = "AP"
+    window.alert("The Current High Score is " + highScore + "! Held by " + initials + "!");
+};
+
+
 
 
 startButtonEl.addEventListener("click", startQuiz);
+
+highScoreEl.addEventListener("click", viewHighScore);
