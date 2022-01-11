@@ -12,26 +12,23 @@ var currentScore = 0;
 var questions = [
     {
         question: "What does DOM stand for?",
-        // choice1: "Diffuse Object Model",
-        // choice2: "Document Object Model",
-        // choice3: "Diffuse Objective Model",
-        // choice4: "Domestic Objective Model",
-
-        //Make these arrays, and use for loop rather than all 4 choices
-        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
+        choice1: "Diffuse Object Model",
+        choice2: "Document Object Model",
+        choice3: "Diffuse Objective Model",
+        choice4: "Domestic Objective Model",
         correct: 2, 
     },
     {
         question: "What does MOM stand for?",
         choice1: "Diffuse Object Model",
         choice2: "Document Object Model",
-        choice3: "Mother Objective Model",
+        choice3: "My Other Mother",
         choice4: "Domestic Objective Model",
         correct: 3, 
     },
     {
         question: "What does LOM stand for?",
-        choice1: "Lil' Object Model",
+        choice1: "Lots of Mustard",
         choice2: "Document Object Model",
         choice3: "Diffuse Objective Model",
         choice4: "Domestic Objective Model",
@@ -74,7 +71,7 @@ var questions = [
         choice1: "Diffuse Object Model",
         choice2: "Document Object Model",
         choice3: "Diffuse Objective Model",
-        choice4: "Yah done",
+        choice4: "Yah done!",
         correct: 4, 
     }
 ];
@@ -143,9 +140,17 @@ var createQuestion = function(questionNumberArg) {
     choicesDivEl.className = "choices"
     questionDivEl.appendChild(choicesDivEl);
 
-    //Create FOUR buttons, IF/ELSE to add Correct or Wrong IDs
+
+
+
+
+
+
+
+    //Create FOUR buttons, IF/ELSE to add Correct or Wrong ID/CLASSs
+
     var questionChoiceEl = document.createElement("button");
-    questionChoiceEl.className = "choice choice1";
+    questionChoiceEl.className = "choice";
     questionChoiceEl.textContent = questions[questionNumberArg].choice1;
     if (questions[questionNumberArg].correct === 1) {
         questionChoiceEl.setAttribute ("id", "correct");
@@ -154,8 +159,8 @@ var createQuestion = function(questionNumberArg) {
     };
     choicesDivEl.appendChild(questionChoiceEl);
 
-    questionChoiceEl = document.createElement("button");
-    questionChoiceEl.className = "choice choice2";
+    var questionChoiceEl = document.createElement("button");
+    questionChoiceEl.className = "choice";
     questionChoiceEl.textContent = questions[questionNumberArg].choice2;
     if (questions[questionNumberArg].correct === 2) {
         questionChoiceEl.setAttribute ("id", "correct");
@@ -164,8 +169,8 @@ var createQuestion = function(questionNumberArg) {
     };
     choicesDivEl.appendChild(questionChoiceEl);
 
-    questionChoiceEl = document.createElement("button");
-    questionChoiceEl.className = "choice choice3";
+    var questionChoiceEl = document.createElement("button");
+    questionChoiceEl.className = "choice";
     questionChoiceEl.textContent = questions[questionNumberArg].choice3;
     if (questions[questionNumberArg].correct === 3) {
         questionChoiceEl.setAttribute ("id", "correct");
@@ -173,9 +178,9 @@ var createQuestion = function(questionNumberArg) {
         questionChoiceEl.className += " wrong";
     };
     choicesDivEl.appendChild(questionChoiceEl);
-    
-    questionChoiceEl = document.createElement("button");
-    questionChoiceEl.className = "choice choice4";
+
+    var questionChoiceEl = document.createElement("button");
+    questionChoiceEl.className = "choice";
     questionChoiceEl.textContent = questions[questionNumberArg].choice4;
     if (questions[questionNumberArg].correct === 4) {
         questionChoiceEl.setAttribute ("id", "correct");
@@ -183,6 +188,7 @@ var createQuestion = function(questionNumberArg) {
         questionChoiceEl.className += " wrong";
     };
     choicesDivEl.appendChild(questionChoiceEl);
+
 
     //Create "Answer" Confirmation
     var answerEl = document.createElement("h3");
