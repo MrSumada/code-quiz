@@ -122,46 +122,30 @@ var createQuestion = function(questionNumberArg) {
     choicesDivEl.className = "choices"
     questionDivEl.appendChild(choicesDivEl);
 
+
+
+
+
+
     //Create FOUR buttons, IF/ELSE to add Correct or Wrong IDs
+
+    for (var i = 0; i < 4; i++) {
     var questionChoiceEl = document.createElement("button");
-    questionChoiceEl.className = "choice choice1";
-    questionChoiceEl.textContent = questions[questionNumberArg].choice1;
-    if (questions[questionNumberArg].correct === 1) {
-        questionChoiceEl.setAttribute ("id", "correct");
-    } else {
-        questionChoiceEl.className += " wrong";
-    };
-    choicesDivEl.appendChild(questionChoiceEl);
-
-    questionChoiceEl = document.createElement("button");
-    questionChoiceEl.className = "choice choice2";
-    questionChoiceEl.textContent = questions[questionNumberArg].choice2;
-    if (questions[questionNumberArg].correct === 2) {
-        questionChoiceEl.setAttribute ("id", "correct");
-    } else {
-        questionChoiceEl.className += " wrong";
-    };
-    choicesDivEl.appendChild(questionChoiceEl);
-
-    questionChoiceEl = document.createElement("button");
-    questionChoiceEl.className = "choice choice3";
-    questionChoiceEl.textContent = questions[questionNumberArg].choice3;
-    if (questions[questionNumberArg].correct === 3) {
-        questionChoiceEl.setAttribute ("id", "correct");
-    } else {
-        questionChoiceEl.className += " wrong";
-    };
-    choicesDivEl.appendChild(questionChoiceEl);
+    questionChoiceEl.className = "choice";
     
-    questionChoiceEl = document.createElement("button");
-    questionChoiceEl.className = "choice choice4";
-    questionChoiceEl.textContent = questions[questionNumberArg].choice4;
-    if (questions[questionNumberArg].correct === 4) {
+    questionChoiceEl.textContent = questions[questionNumberArg].choices[i];
+    if (questions[questionNumberArg].correct === i + 1) {
         questionChoiceEl.setAttribute ("id", "correct");
     } else {
         questionChoiceEl.className += " wrong";
     };
     choicesDivEl.appendChild(questionChoiceEl);
+    };
+
+    
+
+
+
 
     //Create "Answer" Confirmation
     var answerEl = document.createElement("h3");
