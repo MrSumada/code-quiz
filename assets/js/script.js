@@ -3,34 +3,35 @@ var startContainer = document.querySelector("#start-div");
 var highScoreEl = document.querySelector("#high-score");
 var timeLeft = document.querySelector("span");
 
-var highScore = 0;
-var initials = "AP";
-var highScoreObj = {points: highScore, name: initials};
+var highScoreObj = JSON.parse(localStorage.getItem("highScoreObj")) || {points: 0, name: "No One!"};
 
 var time = 30;
 var questionContainerEl = document.querySelector("#question-container");
 var questionNumber = 0;
-var currentScore = 0
+var currentScore = 0;
 var questions = [
     {
         question: "What does DOM stand for?",
-        choice1: "Diffuse Object Model",
-        choice2: "Document Object Model",
-        choice3: "Diffuse Objective Model",
-        choice4: "Domestic Objective Model",
+        // choice1: "Diffuse Object Model",
+        // choice2: "Document Object Model",
+        // choice3: "Diffuse Objective Model",
+        // choice4: "Domestic Objective Model",
+
+        //Make these arrays, and use for loop rather than all 4 choices
+        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
         correct: 2, 
     },
     {
         question: "What does MOM stand for?",
         choice1: "Diffuse Object Model",
         choice2: "Document Object Model",
-        choice3: "Diffuse Objective Model",
+        choice3: "Mother Objective Model",
         choice4: "Domestic Objective Model",
         correct: 3, 
     },
     {
         question: "What does LOM stand for?",
-        choice1: "Diffuse Object Model",
+        choice1: "Lil' Object Model",
         choice2: "Document Object Model",
         choice3: "Diffuse Objective Model",
         choice4: "Domestic Objective Model",
@@ -41,13 +42,13 @@ var questions = [
         choice1: "Diffuse Object Model",
         choice2: "Document Object Model",
         choice3: "Diffuse Objective Model",
-        choice4: "Domestic Objective Model",
+        choice4: "My friend's ex",
         correct: 4, 
     },
     {
         question: "What does DOM stand for?",
         choice1: "Diffuse Object Model",
-        choice2: "Document Object Model",
+        choice2: "Document Object Model again",
         choice3: "Diffuse Objective Model",
         choice4: "Domestic Objective Model",
         correct: 2, 
@@ -56,13 +57,13 @@ var questions = [
         question: "What does MOM stand for?",
         choice1: "Diffuse Object Model",
         choice2: "Document Object Model",
-        choice3: "Diffuse Objective Model",
+        choice3: "My Ole Mule",
         choice4: "Domestic Objective Model",
         correct: 3, 
     },
     {
         question: "What does LOM stand for?",
-        choice1: "Diffuse Object Model",
+        choice1: "Lommy",
         choice2: "Document Object Model",
         choice3: "Diffuse Objective Model",
         choice4: "Domestic Objective Model",
@@ -73,7 +74,7 @@ var questions = [
         choice1: "Diffuse Object Model",
         choice2: "Document Object Model",
         choice3: "Diffuse Objective Model",
-        choice4: "Domestic Objective Model",
+        choice4: "Yah done",
         correct: 4, 
     }
 ];
@@ -122,7 +123,6 @@ var countdown = function() {
     },1000);
 
 };
-
 
 // CREATE QUESTION FROM questions ARRAY FUNCTION
 
@@ -189,7 +189,6 @@ var createQuestion = function(questionNumberArg) {
     answerEl.className = "answer";
 
     //EITHER CHOICE event listener
-    var choiceEl = document.querySelector(".choice");
     choicesDivEl.addEventListener("click", function(event){
 
         //CORRECT or WRONG target match
@@ -233,11 +232,6 @@ var createQuestion = function(questionNumberArg) {
 
 function score() {
 
-    // NEED TO ADD A TEXT BOX TO ADD INITIALS
-    // LINKS TO HIGH SCORES
-    // HIGH SCORES CAN 'GO BACK' or 'CLEAR HIGH SCORE'
-
-
     var deleteContainer = document.querySelector("#question-container");
     removeAllChildren(questionContainerEl);
 
@@ -248,7 +242,7 @@ function score() {
     scoreContainerEl.appendChild(scoreDivEl);
 
     var scoreHeaderEl = document.createElement("h1");
- 
+
     scoreHeaderEl.textContent = "You did it! Your score is " + currentScore + "!";
     scoreDivEl.appendChild(scoreHeaderEl);
 
@@ -270,29 +264,12 @@ function score() {
 
     submitScore.addEventListener("click", function(){
         var submitName = document.querySelector(".initials").value;
-        initials = submitName;
-        highScore = currentScore;
-        
-        var savedTasks = localStorage.getItem("highScoreObj");
 
-        console.log("Submit Name");
-        // console.log(submitName);
-        // console.log("initials");
-        // console.log(initials);
-        // console.log("currentScore");
-        // console.log(currentScore);
-        // console.log("highScore");
-        // console.log(highScore);
-        // console.log("object points");
-        // console.log(highScoreObj.points);
-        // console.log(highScoreObj.points + 1);
-
-        if (highScore > highScoreObj.points) {
-            highScoreObj.points = highScore;
-            highScoreObj.name = initials;
+        if (currentScore > highScoreObj.points) {
+            highScoreObj.points = currentScore;
+            highScoreObj.name = submitName;
             localStorage.setItem("highScoreObj", JSON.stringify(highScoreObj));
-            // console.log("storage Obj");
-            // console.log(highScoreObj);
+
             window.alert("The Current High Score is " + highScoreObj.points + "! Held by " + highScoreObj.name + "!");
         } else {
             window.alert("The Current High Score is still " + highScoreObj.points + "! Held by " + highScoreObj.name + "!");
@@ -314,42 +291,9 @@ function score() {
     });
 };
 
-
-//SAVE and LOAD HighScore
-
-var saveScore = function() {
-    localStorage.setItem("highScoreObj", JSON.stringify(highScoreObj));
-};
-
-var loadTasks = function() {
-    var savedTasks = localStorage.getItem("highScoreObj");
-    // if there are no tasks, set tasks to an empty array and return out of the function
-    if (!savedTasks) {
-        return false;
-    }
-
-    // parse into array of objects
-    savedScore = JSON.parse(savedScore);
-};
-
-// function saveHighScore() {
-//     loadTasks();
-//     if (currentScore > highScoreObj.points) {
-//         saveScore();
-//         window.alert("The Current High Score is " + highScoreObj.points + "! Held by " + highScoreObj.name + "!");
-
-//     } else {
-//         window.alert("The Current High Score is still" + highScoreObj.points + "! Held by " + highScoreObj.name + "!");
-
-//     }
-// }
-
 function viewHighScore() {
-    window.alert("The Current High Score is " + highScore + "! Held by " + initials + "!");
+    window.alert("The Current High Score is " + highScoreObj.points + "! Held by " + highScoreObj.name + "!");
 };
-
-
-
 
 startButtonEl.addEventListener("click", startQuiz);
 
