@@ -20,6 +20,7 @@
     font-size: 22px;
     width: 100%;
     justify-content: center;
+    /* flex-direction: column; */
   }
 
   h1 {
@@ -85,11 +86,6 @@
     display: none;
   }
 
-  #question-container {
-    height: 800px;
-    min-width: 200px;
-  }
-
   #high-score {
     height: 50%;
   }
@@ -113,5 +109,22 @@
   /* @MEDIA QUERIES - PHONE */
 
   @media screen and (max-width: 600px) {
+
+    #question-container {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .choices {
+      display: inline-block;
+      width: 100%;
+    }
+
+    .choice {
+      text-align: center;
+      display: inline-block;
+    }
 
   }

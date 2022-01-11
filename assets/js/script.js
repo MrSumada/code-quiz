@@ -2,6 +2,11 @@ var startButtonEl = document.querySelector("#startbtn");
 var startContainer = document.querySelector("#start-div");
 var highScoreEl = document.querySelector("#high-score");
 var timeLeft = document.querySelector("span");
+
+var highScore = 0;
+var initials = "AP";
+var highScoreObj = {points: highScore, name: initials};
+
 var time = 30;
 var questionContainerEl = document.querySelector("#question-container");
 var questionNumber = 0;
@@ -212,12 +217,12 @@ var createQuestion = function(questionNumberArg) {
             questionNumber++;
             questionDivEl.remove();
             if (questionNumber <= questions.length-1){
-                if (time > 0) {
+                if (time > 1) {
                 createQuestion(questionNumber);
                 }
             } else {
                 clearInterval(nextQuestion);
-                if (time > 0) {
+                if (time > 1) {
                 score();
                 };
             };
@@ -247,10 +252,53 @@ function score() {
     scoreHeaderEl.textContent = "You did it! Your score is " + currentScore + "!";
     scoreDivEl.appendChild(scoreHeaderEl);
 
+    var initialsEl = document.createElement("input");
+    initialsEl.className = "initials";
+    initialsEl.setAttribute("type", "text");
+    initialsEl.setAttribute("placeholder", "What's Your Name?");
+    scoreDivEl.appendChild(initialsEl);
+
+    var submitScore = document.createElement("button");
+    submitScore.className = "submit";
+    submitScore.textContent = "Submit Score?"
+    scoreDivEl.appendChild(submitScore);
+
     var playAgain = document.createElement("button");
     playAgain.className = "again";
     playAgain.textContent = "Play Again?"
     scoreDivEl.appendChild(playAgain);
+
+    submitScore.addEventListener("click", function(){
+        var submitName = document.querySelector(".initials").value;
+        initials = submitName;
+        highScore = currentScore;
+        
+        var savedTasks = localStorage.getItem("highScoreObj");
+
+        console.log("Submit Name");
+        // console.log(submitName);
+        // console.log("initials");
+        // console.log(initials);
+        // console.log("currentScore");
+        // console.log(currentScore);
+        // console.log("highScore");
+        // console.log(highScore);
+        // console.log("object points");
+        // console.log(highScoreObj.points);
+        // console.log(highScoreObj.points + 1);
+
+        if (highScore > highScoreObj.points) {
+            highScoreObj.points = highScore;
+            highScoreObj.name = initials;
+            localStorage.setItem("highScoreObj", JSON.stringify(highScoreObj));
+            // console.log("storage Obj");
+            // console.log(highScoreObj);
+            window.alert("The Current High Score is " + highScoreObj.points + "! Held by " + highScoreObj.name + "!");
+        } else {
+            window.alert("The Current High Score is still " + highScoreObj.points + "! Held by " + highScoreObj.name + "!");
+        }
+        } 
+    );
 
     playAgain.addEventListener("click", function() {
         time = 30;
@@ -266,9 +314,37 @@ function score() {
     });
 };
 
+
+//SAVE and LOAD HighScore
+
+var saveScore = function() {
+    localStorage.setItem("highScoreObj", JSON.stringify(highScoreObj));
+};
+
+var loadTasks = function() {
+    var savedTasks = localStorage.getItem("highScoreObj");
+    // if there are no tasks, set tasks to an empty array and return out of the function
+    if (!savedTasks) {
+        return false;
+    }
+
+    // parse into array of objects
+    savedScore = JSON.parse(savedScore);
+};
+
+// function saveHighScore() {
+//     loadTasks();
+//     if (currentScore > highScoreObj.points) {
+//         saveScore();
+//         window.alert("The Current High Score is " + highScoreObj.points + "! Held by " + highScoreObj.name + "!");
+
+//     } else {
+//         window.alert("The Current High Score is still" + highScoreObj.points + "! Held by " + highScoreObj.name + "!");
+
+//     }
+// }
+
 function viewHighScore() {
-    var highScore = 100;
-    var initials = "AP"
     window.alert("The Current High Score is " + highScore + "! Held by " + initials + "!");
 };
 
