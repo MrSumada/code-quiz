@@ -12,66 +12,42 @@ var currentScore = 0;
 var questions = [
     {
         question: "What does DOM stand for?",
-        choice1: "Diffuse Object Model",
-        choice2: "Document Object Model",
-        choice3: "Diffuse Objective Model",
-        choice4: "Domestic Objective Model",
+        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
         correct: 2, 
     },
     {
         question: "What does MOM stand for?",
-        choice1: "Diffuse Object Model",
-        choice2: "Document Object Model",
-        choice3: "My Other Mother",
-        choice4: "Domestic Objective Model",
+        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
         correct: 3, 
     },
     {
         question: "What does LOM stand for?",
-        choice1: "Lots of Mustard",
-        choice2: "Document Object Model",
-        choice3: "Diffuse Objective Model",
-        choice4: "Domestic Objective Model",
+        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
         correct: 1, 
     },
     {
         question: "What does ADRIAN stand for?",
-        choice1: "Diffuse Object Model",
-        choice2: "Document Object Model",
-        choice3: "Diffuse Objective Model",
-        choice4: "My friend's ex",
+        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
         correct: 4, 
     },
     {
         question: "What does DOM stand for?",
-        choice1: "Diffuse Object Model",
-        choice2: "Document Object Model again",
-        choice3: "Diffuse Objective Model",
-        choice4: "Domestic Objective Model",
+        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
         correct: 2, 
     },
     {
         question: "What does MOM stand for?",
-        choice1: "Diffuse Object Model",
-        choice2: "Document Object Model",
-        choice3: "My Ole Mule",
-        choice4: "Domestic Objective Model",
+        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
         correct: 3, 
     },
     {
         question: "What does LOM stand for?",
-        choice1: "Lommy",
-        choice2: "Document Object Model",
-        choice3: "Diffuse Objective Model",
-        choice4: "Domestic Objective Model",
+        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
         correct: 1, 
     },
     {
         question: "What does LAST stand for?",
-        choice1: "Diffuse Object Model",
-        choice2: "Document Object Model",
-        choice3: "Diffuse Objective Model",
-        choice4: "Yah done!",
+        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
         correct: 4, 
     }
 ];
@@ -118,7 +94,6 @@ var countdown = function() {
         timeLeft.textContent = time;
         };
     },1000);
-
 };
 
 // CREATE QUESTION FROM questions ARRAY FUNCTION
@@ -142,53 +117,20 @@ var createQuestion = function(questionNumberArg) {
 
 
 
+    //Create FOUR buttons, IF/ELSE to add Correct or Wrong IDs
 
-
-
-
-
-    //Create FOUR buttons, IF/ELSE to add Correct or Wrong ID/CLASSs
-
+    for (var i = 0; i < 4; i++) {
     var questionChoiceEl = document.createElement("button");
     questionChoiceEl.className = "choice";
-    questionChoiceEl.textContent = questions[questionNumberArg].choice1;
-    if (questions[questionNumberArg].correct === 1) {
+    
+    questionChoiceEl.textContent = questions[questionNumberArg].choices[i];
+    if (questions[questionNumberArg].correct === i + 1) {
         questionChoiceEl.setAttribute ("id", "correct");
     } else {
         questionChoiceEl.className += " wrong";
     };
     choicesDivEl.appendChild(questionChoiceEl);
-
-    var questionChoiceEl = document.createElement("button");
-    questionChoiceEl.className = "choice";
-    questionChoiceEl.textContent = questions[questionNumberArg].choice2;
-    if (questions[questionNumberArg].correct === 2) {
-        questionChoiceEl.setAttribute ("id", "correct");
-    } else {
-        questionChoiceEl.className += " wrong";
     };
-    choicesDivEl.appendChild(questionChoiceEl);
-
-    var questionChoiceEl = document.createElement("button");
-    questionChoiceEl.className = "choice";
-    questionChoiceEl.textContent = questions[questionNumberArg].choice3;
-    if (questions[questionNumberArg].correct === 3) {
-        questionChoiceEl.setAttribute ("id", "correct");
-    } else {
-        questionChoiceEl.className += " wrong";
-    };
-    choicesDivEl.appendChild(questionChoiceEl);
-
-    var questionChoiceEl = document.createElement("button");
-    questionChoiceEl.className = "choice";
-    questionChoiceEl.textContent = questions[questionNumberArg].choice4;
-    if (questions[questionNumberArg].correct === 4) {
-        questionChoiceEl.setAttribute ("id", "correct");
-    } else {
-        questionChoiceEl.className += " wrong";
-    };
-    choicesDivEl.appendChild(questionChoiceEl);
-
 
     //Create "Answer" Confirmation
     var answerEl = document.createElement("h3");
