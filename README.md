@@ -10,7 +10,7 @@ https://mrsumada.github.io/timed-js-code-quiz/
 
 Just start the game with the Play Button. A question will appear with four possible answers.  Choose the right one, and get a point.  Choose the wrong one and lose some time.  The game ends when the timer runs out, or when you finish all the questions. Good luck!
 
-# High Score
+## High Score
 
 Come back anytime! You'll be able to check on high score with the "View High Scores" button, so try beating it!
 
