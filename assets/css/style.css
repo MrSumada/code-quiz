@@ -39,6 +39,7 @@
   }
 
   button {
+    font-size: 16px;
     color: white;
     background-color: rgb(72, 36, 100);
     text-align: center;
@@ -71,15 +72,15 @@
       text-decoration: none;
   }
 
- .start, .score {
-   text-align: center;
- }
+  .start, .score {
+    text-align: center;
+  }
 
   .choice {
       text-align: left;
       display: block;
       width: 40%;
-      max-width: 300px;
+      max-width: 400px;
   }
 
   .invisible {
@@ -110,11 +111,25 @@
 
   @media screen and (max-width: 600px) {
 
+    h1{
+      font-size: 24px;
+    }
+
     #question-container {
       display: flex;
       text-align: center;
       justify-content: center;
       align-items: center;
+    }
+
+    .score {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .submit {
+      margin-top: 10px;
     }
 
     .choices {

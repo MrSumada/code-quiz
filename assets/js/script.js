@@ -5,7 +5,7 @@ var timeLeft = document.querySelector("span");
 
 var highScoreObj = JSON.parse(localStorage.getItem("highScoreObj")) || {points: 0, name: "No One!"};
 
-var time = 30;
+var time = 60;
 var questionContainerEl = document.querySelector("#question-container");
 var questionNumber = 0;
 var currentScore = 0;
@@ -16,39 +16,39 @@ var questions = [
         correct: 2, 
     },
     {
-        question: "What does MOM stand for?",
-        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
-        correct: 3, 
-    },
-    {
-        question: "What does LOM stand for?",
-        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
-        correct: 1, 
-    },
-    {
-        question: "What does ADRIAN stand for?",
-        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
+        question: "Which of the following would change an element's background to red?",
+        choices: ['element.setAttribute("style", "red");','element.setAttribute("class", "background: red");', 'element.setAttribute("red");','element.setAttribute("style", "background-color: red");'],
         correct: 4, 
     },
     {
-        question: "What does DOM stand for?",
-        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
+        question: "When using the setInterval() function, what unit of time is utilized for the delay?",
+        choices: ["seconds","minutes", "milliseconds","rem"],
+        correct: 3, 
+    },
+    {
+        question: "Which statement best describes what is happening to data when it is persisted to local storage.",
+        choices: ["The data is stored in the window called localStorage.","The data is stored under the Applications tab in Chrome Dev Tools.", "The data is stored in the database in the backend.","The data is stored in the client or browser."],
+        correct: 4, 
+    },
+    {
+        question: "Which property can you use in order to implement event delegation?",
+        choices: ["event.addEventListener()","event.stopPropagation()", "event.target","event.preventDefault()"],
+        correct: 3, 
+    },
+    {
+        question: "Why do we need to convert an object into JSON in order for it to properly persist to local storage?",
+        choices: ["Local storage only accepts JSON objects.","Local storage cannot read JavaScript, so we convert JavaScript into JSON.", "It is convention to store objects using JSON, and we must follow that pattern so that our code is easy to read.","Local storage can only store strings, so we convert the object to JSON to store it properly."],
+        correct: 4, 
+    },
+    {
+        question: "While creating a form, you decide that you do not want the corresponding browser actions to happen. What would you use to make this possible?",
+        choices: ["event.stopAction()","event.preventDefault()", "event.stopPropagation()","event.dispatchEvent()"],
         correct: 2, 
     },
     {
-        question: "What does MOM stand for?",
-        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
-        correct: 3, 
-    },
-    {
-        question: "What does LOM stand for?",
-        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
+        question: "Which of the following best describes a Web API?",
+        choices: ["Web APIs are built into your web browser and contain methods that allow us to manipulate a web page via JavaScript.","Web APIs are a part of the JavaScript language itself and are built into your browser.", "Web APIs are low level code (say C or C++) that directly control the computer's GPU or other graphics functions.","Web APIs are not built into the browser by default, and you generally have to retrieve their code and information from somewhere on the Web."],
         correct: 1, 
-    },
-    {
-        question: "What does LAST stand for?",
-        choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
-        correct: 4, 
     }
 ];
 
@@ -213,16 +213,20 @@ function score() {
     submitScore.addEventListener("click", function(){
         var submitName = document.querySelector(".initials").value;
 
-        if (currentScore > highScoreObj.points) {
+        if (!submitName) {
+            submitName = "Ol' No Name"
+        };
+
+        if (currentScore >= highScoreObj.points) {
             highScoreObj.points = currentScore;
             highScoreObj.name = submitName;
             localStorage.setItem("highScoreObj", JSON.stringify(highScoreObj));
 
             window.alert("The Current High Score is " + highScoreObj.points + "! Held by " + highScoreObj.name + "!");
         } else {
-            window.alert("The Current High Score is still " + highScoreObj.points + "! Held by " + highScoreObj.name + "!");
+            window.alert("Your score is " + currentScore + ", but the Current High Score is still " + highScoreObj.points + "! Held by " + highScoreObj.name + "!");
         }
-        } 
+        }
     );
 
     playAgain.addEventListener("click", function() {
