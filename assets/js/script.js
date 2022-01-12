@@ -116,6 +116,7 @@ var createQuestion = function(questionNumberArg) {
     questionDivEl.appendChild(choicesDivEl);
 
 
+
     //Create FOUR buttons, IF/ELSE to add Correct or Wrong IDs
 
     for (var i = 0; i < 4; i++) {
@@ -130,7 +131,6 @@ var createQuestion = function(questionNumberArg) {
     };
     choicesDivEl.appendChild(questionChoiceEl);
     };
-
 
     //Create "Answer" Confirmation
     var answerEl = document.createElement("h3");
