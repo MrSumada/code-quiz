@@ -12,12 +12,6 @@ var currentScore = 0;
 var questions = [
     {
         question: "What does DOM stand for?",
-        // choice1: "Diffuse Object Model",
-        // choice2: "Document Object Model",
-        // choice3: "Diffuse Objective Model",
-        // choice4: "Domestic Objective Model",
-
-        //Make these arrays, and use for loop rather than all 4 choices
         choices: ["Diffuse Object Model","Document Object Model", "Diffuse Objective Model","Domestic Objective Model"],
         correct: 2, 
     },
@@ -100,7 +94,6 @@ var countdown = function() {
         timeLeft.textContent = time;
         };
     },1000);
-
 };
 
 // CREATE QUESTION FROM questions ARRAY FUNCTION
@@ -123,10 +116,6 @@ var createQuestion = function(questionNumberArg) {
     questionDivEl.appendChild(choicesDivEl);
 
 
-
-
-
-
     //Create FOUR buttons, IF/ELSE to add Correct or Wrong IDs
 
     for (var i = 0; i < 4; i++) {
@@ -141,10 +130,6 @@ var createQuestion = function(questionNumberArg) {
     };
     choicesDivEl.appendChild(questionChoiceEl);
     };
-
-    
-
-
 
 
     //Create "Answer" Confirmation
