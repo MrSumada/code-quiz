@@ -1,8 +1,8 @@
-# The Timed Javascript Code Quiz
+# The Javascript-Coded Javascript Code Quiz
 
 Made in Jazascript of course!
 
-https://mrsumada.github.io/timed-js-code-quiz/
+https://mrsumada.github.io/javascript-coded-javascript-code-quiz/
 
 <img width="1048" alt="js-quiz-screenshot" src="https://user-images.githubusercontent.com/93618393/149209727-371e3a5a-36a5-41d2-9b95-b44d5a6ea3e4.png">
 
